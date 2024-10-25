@@ -1,0 +1,21 @@
+[package]
+name = "ted-editor"
+version = "0.1.0"
+edition = "2021"
+description = "A Rust port of tsoding's dramatic editor"
+
+[dependencies]
+bevy = { git = "https://github.com/bevyengine/bevy", default-features = false, features = [
+    "animation",
+    "bevy_asset",
+    "bevy_audio",
+    "bevy_core_pipeline",
+    "bevy_state",
+    "bevy_render",
+    "bevy_pbr",
+    "bevy_ui",
+    "bevy_text",
+    "tonemapping_luts",
+    "bevy_winit",
+    "wayland",
+] }
