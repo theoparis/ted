@@ -2,6 +2,7 @@
 	"extends": [
 		"config:best-practices"
 	],
+	"versioning": "loose",
 	"dependencyDashboard": true,
 	"schedule": [
 		"every weekend"
