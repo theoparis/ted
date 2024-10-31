@@ -3,7 +3,6 @@
 		"config:best-practices"
 	],
 	"dependencyDashboard": true,
-	"ignoreUnstable": true,
 	"schedule": [
 		"every weekend"
 	]
