@@ -90,13 +90,14 @@ fn keyboard_input(
 		);
 	}
 
-	rigid_body.velocity = (target - camera_transform.translation)
-		* Vec3::new(2.0, 2.0, 2.0);
+	rigid_body.velocity =
+		(target - camera_transform.translation) * Vec3::new(2.0, 2.0, 2.0);
 	text_editor.camera_scale_velocity =
 		(target_scale - camera_transform.scale) * Vec3::new(2.0, 2.0, 2.0);
-	
+
 	camera_transform.translation += rigid_body.velocity * time.delta_secs();
-	camera_transform.scale += text_editor.camera_scale_velocity * time.delta_secs();
+	camera_transform.scale +=
+		text_editor.camera_scale_velocity * time.delta_secs();
 
 	if keyboard_input.pressed(KeyCode::ArrowLeft) {
 		if text_editor.column > 0 {
