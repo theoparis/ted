@@ -2,8 +2,8 @@
 	"extends": [
 		"config:best-practices"
 	],
-	"versioning": "loose",
 	"dependencyDashboard": true,
+	"ignoreUnstable": true,
 	"schedule": [
 		"every weekend"
 	]
