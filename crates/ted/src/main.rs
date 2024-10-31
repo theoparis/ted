@@ -1,17 +1,13 @@
 use bevy::{
 	app::{App, Startup, Update},
-	asset::{AssetServer, Assets},
+	asset::AssetServer,
 	color::Color,
 	input::ButtonInput,
 	math::Vec3,
-	prelude::{
-		Camera2d, Camera3d, Commands, Component, KeyCode, Query, Res, ResMut,
-		Text, Transform,
-	},
-	sprite::ColorMaterial,
+	prelude::{Camera2d, Commands, Component, KeyCode, Query, Res, Transform},
 	text::{Text2d, TextColor, TextFont},
 	time::Time,
-	ui::{GridPlacement, Node, PositionType, Val},
+	ui::Node,
 	window::Window,
 	DefaultPlugins,
 };
@@ -41,8 +37,8 @@ fn keyboard_input(
 	time: Res<Time>,
 	keyboard_input: Res<ButtonInput<KeyCode>>,
 	mut query: Query<(&mut TextEditor, &mut RigidBody, &mut Transform)>,
-	mut text: Query<&mut Text2d>,
-	mut window: Query<&Window>,
+	text: Query<&mut Text2d>,
+	window: Query<&Window>,
 ) {
 	let (mut text_editor, mut rigid_body, mut camera_transform) =
 		query.iter_mut().next().unwrap();
@@ -56,14 +52,12 @@ fn keyboard_input(
 	let mut cursor_pos = Vec3::new(0.0, 0.0, 0.0);
 	let cursor_row = text_editor.row;
 	let cursor_col = text_editor.column;
-	let cursor_offset = 0.0;
-	let mut cursor_row_offset = 0.0;
 
 	for (i, line) in text.0.lines().enumerate() {
 		if i == cursor_row {
 			cursor_pos.y = -((i as f32) + 0.5) * 18.0;
 			cursor_pos.x = 0.0;
-			for (j, c) in line.chars().enumerate() {
+			for (j, _c) in line.chars().enumerate() {
 				if j == cursor_col {
 					break;
 				}
@@ -71,7 +65,6 @@ fn keyboard_input(
 			}
 			break;
 		}
-		cursor_row_offset += 18.0;
 	}
 
 	let mut target = cursor_pos;
@@ -113,10 +106,10 @@ fn keyboard_input(
 		if text_editor.row > 0 {
 			text_editor.row -= 1;
 		}
-	} else if keyboard_input.pressed(KeyCode::ArrowDown) {
-		if text_editor.row < text.0.lines().count() - 1 {
-			text_editor.row += 1;
-		}
+	} else if keyboard_input.pressed(KeyCode::ArrowDown)
+		&& text_editor.row < text.0.lines().count() - 1
+	{
+		text_editor.row += 1;
 	}
 
 	// Reset the velocity if the key is released
@@ -130,7 +123,7 @@ fn keyboard_input(
 }
 
 fn setup_camera(mut query: Query<(&mut Camera2d, &mut Transform)>) {
-	if let Some((mut camera, mut transform)) = query.iter_mut().next() {
+	if let Some((_camera, mut transform)) = query.iter_mut().next() {
 		transform.scale = Vec3::new(3.0, 3.0, 3.0);
 	}
 }
@@ -149,9 +142,7 @@ fn setup(asset_server: Res<AssetServer>, mut commands: Commands) {
 			column: 0,
 			camera_scale_velocity: Vec3::new(0.0, 0.0, 0.0),
 		},
-		Camera2d {
-			..Default::default()
-		},
+		Camera2d,
 		RigidBody {
 			velocity: Vec3::new(0.0, 0.0, 0.0),
 		},
