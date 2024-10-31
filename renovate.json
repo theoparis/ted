@@ -1,0 +1,9 @@
+{
+	"extends": [
+		"config:best-practices"
+	],
+	"dependencyDashboard": true,
+	"schedule": [
+		"every weekend"
+	]
+}
