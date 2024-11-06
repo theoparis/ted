@@ -12,7 +12,6 @@ use bevy::{
 	DefaultPlugins,
 };
 
-// Text editor with smooth camera movement
 #[derive(Component)]
 pub struct RigidBody {
 	pub velocity: Vec3,
@@ -112,7 +111,6 @@ fn keyboard_input(
 		text_editor.row += 1;
 	}
 
-	// Reset the velocity if the key is released
 	if !keyboard_input.pressed(KeyCode::ArrowLeft)
 		&& !keyboard_input.pressed(KeyCode::ArrowRight)
 		&& !keyboard_input.pressed(KeyCode::ArrowUp)
