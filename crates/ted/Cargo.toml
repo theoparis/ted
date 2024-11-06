@@ -4,8 +4,11 @@ version = "0.1.0"
 edition = "2021"
 description = "A Rust port of tsoding's dramatic editor"
 
-[dependencies]
-bevy = { version = "0.15.0-rc.2", default-features = false, features = [
+[dependencies.bevy]
+git = "https://github.com/bevyengine/bevy"
+rev = "49f63ed2cfdf7ddca724ce95f2ef5758fc14d01e"
+default-features = false
+features = [
     "animation",
     "bevy_asset",
     "bevy_audio",
@@ -18,4 +21,4 @@ bevy = { version = "0.15.0-rc.2", default-features = false, features = [
     "tonemapping_luts",
     "bevy_winit",
     "wayland",
-] }
+]
