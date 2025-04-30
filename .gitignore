@@ -1,0 +1,10 @@
+# OS files
+.DS_Store
+.cache/
+
+# IDE
+.vscode/
+
+# rust
+target/
+.bacon-locations
